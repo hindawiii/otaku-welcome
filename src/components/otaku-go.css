@@ -1,0 +1,363 @@
+.og-root {
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d0d2b 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
+.og-root *, .og-root *::before, .og-root *::after { box-sizing: border-box; }
+
+.og-stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.og-star {
+  position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%;
+  animation: og-twinkle var(--duration) ease-in-out infinite; opacity: 0;
+}
+@keyframes og-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--opacity); transform: scale(1); }
+}
+.og-particle {
+  position: absolute; width: 4px; height: 4px; border-radius: 50%; pointer-events: none;
+  animation: og-float-particle 8s ease-in-out infinite; z-index: 0;
+}
+@keyframes og-float-particle {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+.og-container {
+  position: relative; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; width: 100%; max-width: 420px; padding: 20px;
+  animation: og-enter 0.8s ease;
+}
+@keyframes og-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.og-logo-text {
+  font-size: 2.8rem; font-weight: 900;
+  background: linear-gradient(135deg, #FF6B6B, #FFE66D, #4ECDC4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 10px; text-shadow: 0 0 30px rgba(255,107,107,0.3); letter-spacing: -1px;
+}
+.og-logo-subtitle { color: #a0a0c0; font-size: 0.95rem; margin-bottom: 30px; font-weight: 500; }
+
+.og-anime-character {
+  position: relative; width: 140px; height: 140px; margin-bottom: -35px; z-index: 20;
+  transition: transform 0.3s ease;
+}
+.og-anime-character:hover { transform: scale(1.05); }
+
+.og-character-head {
+  width: 100px; height: 90px;
+  background: linear-gradient(180deg, #ffe0d0 0%, #ffd0c0 100%);
+  border-radius: 50% 50% 45% 45%;
+  position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 2px solid #e8b8a8;
+}
+.og-hair {
+  position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 55px;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f2e 100%);
+  border-radius: 50% 50% 30% 30%; z-index: 5;
+}
+.og-hair::before {
+  content: ''; position: absolute; top: 15px; left: -8px; width: 30px; height: 40px;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f2e 100%);
+  border-radius: 50% 0 50% 50%; transform: rotate(-20deg);
+}
+.og-hair::after {
+  content: ''; position: absolute; top: 15px; right: -8px; width: 30px; height: 40px;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f2e 100%);
+  border-radius: 0 50% 50% 50%; transform: rotate(20deg);
+}
+.og-hair-strand-left, .og-hair-strand-right {
+  position: absolute; width: 15px; height: 35px;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f2e 100%);
+  border-radius: 50%; top: 35px;
+}
+.og-hair-strand-left { left: 12px; transform: rotate(-15deg); }
+.og-hair-strand-right { right: 12px; transform: rotate(15deg); }
+
+.og-accessory {
+  position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 30px; height: 8px;
+  background: linear-gradient(90deg, #FF6B6B, #FF8E8E);
+  border-radius: 4px; z-index: 6;
+}
+.og-accessory::after {
+  content: '✦'; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  color: #FFE66D; font-size: 14px; text-shadow: 0 0 10px #FFE66D;
+}
+
+.og-eye-container {
+  position: absolute; top: 38px; width: 100%;
+  display: flex; justify-content: center; gap: 12px; z-index: 10;
+}
+.og-eye {
+  width: 22px; height: 26px; background: #fff; border-radius: 50% 50% 45% 45%;
+  position: relative; border: 2px solid #2d1b4e; overflow: hidden;
+  transition: all 0.3s ease;
+  animation: og-blink 4s ease-in-out infinite;
+}
+@keyframes og-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.og-pupil {
+  width: 10px; height: 12px; background: #2d1b4e; border-radius: 50%;
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); transition: transform 0.15s ease;
+}
+.og-eye-shine {
+  width: 6px; height: 6px; background: #fff; border-radius: 50%;
+  position: absolute; top: 4px; right: 3px;
+}
+.og-eye-shine-small {
+  width: 3px; height: 3px; background: #fff; border-radius: 50%;
+  position: absolute; bottom: 5px; left: 4px; opacity: 0.7;
+}
+.og-eye-cover {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #ffe0d0 0%, #ffd0c0 100%);
+  border-radius: 50% 50% 45% 45%;
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.3s ease; z-index: 15;
+}
+.og-eye-cover.active { transform: scaleY(1); }
+.og-eye-cover::after {
+  content: '◠'; position: absolute; bottom: 2px; left: 50%;
+  transform: translateX(-50%); color: #c89888; font-size: 12px;
+}
+
+.og-eyebrow {
+  position: absolute; width: 14px; height: 3px; background: #2d1b4e;
+  border-radius: 2px; transition: all 0.3s ease;
+}
+.og-eyebrow.left { left: 28px; transform: rotate(-10deg); }
+.og-eyebrow.right { right: 28px; transform: rotate(10deg); }
+
+.og-blush {
+  position: absolute; width: 16px; height: 10px;
+  background: rgba(255, 150, 150, 0.4); border-radius: 50%; top: 55px;
+}
+.og-blush.left { left: 18px; }
+.og-blush.right { right: 18px; }
+
+.og-mouth {
+  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 8px; border-bottom: 2px solid #c89888;
+  border-radius: 0 0 50% 50%; transition: all 0.3s ease;
+}
+.og-mouth.smile { width: 20px; height: 10px; }
+.og-mouth.surprised {
+  width: 10px; height: 10px; border: 2px solid #c89888;
+  border-radius: 50%; background: #ff9999;
+}
+
+.og-hands {
+  position: absolute; bottom: -5px; width: 100%;
+  display: flex; justify-content: center; gap: 55px; z-index: 25; pointer-events: none;
+}
+.og-hand {
+  width: 22px; height: 18px;
+  background: linear-gradient(180deg, #ffe0d0 0%, #ffd0c0 100%);
+  border-radius: 50% 50% 40% 40%; border: 2px solid #e8b8a8;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translateY(20px); opacity: 0;
+}
+.og-hand::before {
+  content: ''; position: absolute; top: -3px; left: 3px; width: 4px; height: 6px;
+  background: #ffe0d0; border-radius: 50%; border: 1px solid #e8b8a8;
+}
+.og-hand::after {
+  content: ''; position: absolute; top: -3px; right: 3px; width: 4px; height: 6px;
+  background: #ffe0d0; border-radius: 50%; border: 1px solid #e8b8a8;
+}
+.og-hand.show { transform: translateY(0); opacity: 1; }
+
+@keyframes og-typing-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.og-anime-character.character-typing .og-character-head {
+  animation: og-typing-bounce 0.5s ease infinite;
+}
+
+.og-card {
+  background: rgba(22, 33, 62, 0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px; padding: 50px 28px 28px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative; overflow: hidden;
+}
+.og-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #FF6B6B, #FFE66D, #4ECDC4, #FF6B6B);
+  background-size: 300% 100%; animation: og-gradient-shift 3s linear infinite;
+}
+@keyframes og-gradient-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+@keyframes og-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+.og-card.shake { animation: og-shake 0.5s ease; }
+
+.og-tabs {
+  display: flex; gap: 8px; margin-bottom: 24px;
+  background: rgba(0,0,0,0.3); padding: 4px; border-radius: 14px;
+}
+.og-tab {
+  flex: 1; padding: 12px; border: none; background: transparent;
+  color: #a0a0c0; font-family: 'Tajawal', sans-serif;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  border-radius: 10px; transition: all 0.3s ease;
+}
+.og-tab.active {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  color: #fff; box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+}
+.og-tab:not(.active):hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+.og-form-container { position: relative; }
+.og-form { display: none; animation: og-form-enter 0.4s ease; }
+.og-form.active { display: block; }
+@keyframes og-form-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.og-input-group { margin-bottom: 18px; position: relative; }
+.og-input-label {
+  display: block; color: #c0c0e0; font-size: 0.85rem; font-weight: 600;
+  margin-bottom: 8px; margin-right: 4px; transition: color 0.3s ease;
+}
+.og-input-group:focus-within .og-input-label { color: #FF6B6B; }
+.og-input-wrapper { position: relative; }
+.og-input-icon {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 1.1rem; opacity: 0.5; transition: all 0.3s ease; pointer-events: none;
+}
+.og-input-group:focus-within .og-input-icon { opacity: 1; }
+
+.og-root input[type="text"],
+.og-root input[type="email"],
+.og-root input[type="password"] {
+  width: 100%; padding: 14px 42px 14px 42px;
+  background: rgba(0,0,0,0.3);
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 14px; color: #fff;
+  font-family: 'Tajawal', sans-serif; font-size: 0.95rem;
+  outline: none; transition: all 0.3s ease;
+}
+.og-root input::placeholder { color: rgba(160,160,192,0.5); }
+.og-root input:focus {
+  border-color: #FF6B6B; background: rgba(0,0,0,0.4);
+  box-shadow: 0 0 20px rgba(255,107,107,0.15);
+}
+
+.og-password-toggle {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: #a0a0c0;
+  cursor: pointer; font-size: 1.1rem; padding: 4px; opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.og-password-toggle:hover { opacity: 1; color: #FF6B6B; }
+
+.og-submit-btn {
+  width: 100%; padding: 16px; margin-top: 8px;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  border: none; border-radius: 14px; color: #fff;
+  font-family: 'Tajawal', sans-serif; font-size: 1.05rem; font-weight: 800;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255,107,107,0.35);
+}
+.og-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255,107,107,0.5); }
+.og-submit-btn:active { transform: translateY(0); }
+.og-submit-btn::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+.og-submit-btn:hover::after { left: 100%; }
+.og-submit-btn.loading .og-btn-text { display: none; }
+.og-submit-btn.loading .og-loading-spinner { display: block; }
+.og-loading-spinner {
+  display: none; width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+  border-radius: 50%; animation: og-spin 0.8s linear infinite; margin: 0 auto;
+}
+@keyframes og-spin { to { transform: rotate(360deg); } }
+
+.og-divider {
+  display: flex; align-items: center; margin: 20px 0;
+  color: #a0a0c0; font-size: 0.8rem;
+}
+.og-divider::before, .og-divider::after {
+  content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+}
+.og-divider span { padding: 0 12px; }
+
+.og-social-login { display: flex; gap: 10px; }
+.og-social-btn {
+  flex: 1; padding: 12px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+  color: #c0c0e0; font-family: 'Tajawal', sans-serif;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.og-social-btn:hover {
+  background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.og-forgot-password { text-align: center; margin-top: 16px; }
+.og-forgot-password a {
+  color: #FF6B6B; text-decoration: none; font-size: 0.85rem;
+  font-weight: 600; transition: all 0.3s ease;
+}
+.og-forgot-password a:hover { color: #FFE66D; text-decoration: underline; }
+
+.og-welcome-msg {
+  text-align: center; color: #a0a0c0; font-size: 0.8rem;
+  margin-top: 20px; line-height: 1.6;
+}
+.og-welcome-msg span { color: #FFE66D; font-weight: 700; }
+
+.og-shooting-star {
+  position: fixed; width: 100px; height: 2px;
+  background: linear-gradient(90deg, transparent, #FFE66D, transparent);
+  top: var(--top); left: var(--left);
+  transform: rotate(-45deg); opacity: 0;
+  animation: og-shoot 3s ease-out infinite;
+  animation-delay: var(--delay);
+  pointer-events: none; z-index: 1;
+}
+@keyframes og-shoot {
+  0% { opacity: 1; transform: rotate(-45deg) translateX(0); }
+  100% { opacity: 0; transform: rotate(-45deg) translateX(200px); }
+}
+
+@media (max-width: 480px) {
+  .og-logo-text { font-size: 2.2rem; }
+  .og-card { padding: 45px 20px 24px; }
+  .og-anime-character { width: 120px; height: 120px; }
+  .og-character-head { width: 85px; height: 75px; }
+}
