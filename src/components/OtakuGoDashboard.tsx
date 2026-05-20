@@ -15,6 +15,7 @@ import {
   List,
   LineChart,
 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import "./otaku-go-dashboard.css";
 
 type Section = "messages" | "square" | "anime" | "profile";
