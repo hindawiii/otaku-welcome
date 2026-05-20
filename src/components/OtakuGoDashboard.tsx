@@ -235,7 +235,7 @@ export default function OtakuGoDashboard() {
                 </Link>
               </div>
 
-              <div className="ogd-card-image ogd-animate-in ogd-delay-2">
+              <Link to="/room/$id" params={{ id: "arts" }} className="ogd-card-image ogd-animate-in ogd-delay-2 ogd-card-link">
                 <div className="ogd-bg-image" />
                 <div className="ogd-bg-pattern" />
                 <div className="ogd-overlay">
@@ -252,7 +252,7 @@ export default function OtakuGoDashboard() {
                     <span style={{ background: "rgba(255,255,255,0.1)", padding: "4px 12px", borderRadius: 10, fontSize: "0.75rem" }}>🏆 تحدي</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         )}
