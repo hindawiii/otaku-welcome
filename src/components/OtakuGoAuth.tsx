@@ -6,6 +6,7 @@ type Tab = "login" | "register";
 
 export default function OtakuGoAuth() {
   const [tab, setTab] = useState<Tab>("login");
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [showLoginPw, setShowLoginPw] = useState(false);
