@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import "./otaku-go.css";
 
 type Tab = "login" | "register";
