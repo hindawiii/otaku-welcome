@@ -1,0 +1,94 @@
+.ogr-root .ogd-main { padding-bottom: 60px; }
+
+.ogr-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #a0a0c0;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.ogr-back:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+
+.ogr-back-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.ogr-header-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid;
+  margin-bottom: 18px;
+  backdrop-filter: blur(20px);
+}
+.ogr-room-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.ogr-room-info { flex: 1; min-width: 0; }
+.ogr-room-info h2 { margin: 0 0 4px; font-size: 1.15rem; font-weight: 800; }
+.ogr-room-info p { margin: 0; font-size: 0.78rem; color: #a0a0c0; line-height: 1.5; }
+.ogr-room-stats { text-align: center; flex-shrink: 0; }
+.ogr-stat-num { font-size: 1.4rem; font-weight: 900; line-height: 1; }
+.ogr-stat-label { font-size: 0.7rem; color: #a0a0c0; margin-top: 2px; }
+
+.ogr-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.ogr-tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 4px;
+  background: rgba(22,33,62,0.6);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  color: #a0a0c0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.ogr-tab:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+.ogr-tab-icon { font-size: 1.1rem; }
+
+.ogr-content { min-height: 200px; }
+.ogr-placeholder {
+  background: rgba(22,33,62,0.6);
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 36px 20px;
+  text-align: center;
+}
+.ogr-placeholder-icon { font-size: 3rem; margin-bottom: 12px; }
+.ogr-placeholder h3 { margin: 0 0 8px; font-size: 1.1rem; color: #fff; }
+.ogr-placeholder p { margin: 0 0 16px; font-size: 0.85rem; color: #a0a0c0; line-height: 1.7; }
+.ogr-placeholder-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

@@ -15,6 +15,7 @@ import {
   List,
   LineChart,
 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import "./otaku-go-dashboard.css";
 
 type Section = "messages" | "square" | "anime" | "profile";
@@ -119,7 +120,7 @@ export default function OtakuGoDashboard() {
 
             <div className="ogd-grid">
               <div className="ogd-grid-row">
-                <div className="ogd-card ogd-card-small ogd-animate-in">
+                <Link to="/room/$id" params={{ id: "welcome" }} className="ogd-card ogd-card-small ogd-animate-in ogd-card-link">
                   <div>
                     <div className="ogd-card-icon">🎌</div>
                     <div className="ogd-card-title">استقبال الجدد</div>
@@ -133,9 +134,9 @@ export default function OtakuGoDashboard() {
                     </div>
                     <span>+124 نشط</span>
                   </div>
-                </div>
+                </Link>
 
-                <div className="ogd-card ogd-card-wide ogd-animate-in ogd-delay-1">
+                <Link to="/room/$id" params={{ id: "jp" }} className="ogd-card ogd-card-wide ogd-animate-in ogd-delay-1 ogd-card-link">
                   <div className="ogd-card-badge">🔥 شائع</div>
                   <div>
                     <div className="ogd-card-icon">📚</div>
@@ -150,11 +151,11 @@ export default function OtakuGoDashboard() {
                     </div>
                     <span>+89 يتعلمون</span>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="ogd-grid-row">
-                <div className="ogd-card ogd-card-wide english ogd-animate-in ogd-delay-2">
+                <Link to="/room/$id" params={{ id: "en" }} className="ogd-card ogd-card-wide english ogd-animate-in ogd-delay-2 ogd-card-link">
                   <div>
                     <div className="ogd-card-icon">🇬🇧</div>
                     <div className="ogd-card-title">تعلم الإنجليزية</div>
@@ -167,9 +168,9 @@ export default function OtakuGoDashboard() {
                     </div>
                     <span>+56 يتعلمون</span>
                   </div>
-                </div>
+                </Link>
 
-                <div className="ogd-card ogd-card-small arabic ogd-animate-in ogd-delay-3">
+                <Link to="/room/$id" params={{ id: "ar" }} className="ogd-card ogd-card-small arabic ogd-animate-in ogd-delay-3 ogd-card-link">
                   <div>
                     <div className="ogd-card-icon">🕌</div>
                     <div className="ogd-card-title">العربية الفصحى</div>
@@ -182,10 +183,10 @@ export default function OtakuGoDashboard() {
                     </div>
                     <span>+43 نشط</span>
                   </div>
-                </div>
+                </Link>
               </div>
 
-              <div className="ogd-card ogd-card-full ogd-animate-in ogd-delay-4">
+              <Link to="/room/$id" params={{ id: "drawing" }} className="ogd-card ogd-card-full ogd-animate-in ogd-delay-4 ogd-card-link">
                 <div className="ogd-card-badge" style={{ color: "#9B59B6" }}>🎨 جديد</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                   <div style={{ fontSize: "3rem" }}>🎨</div>
@@ -203,7 +204,7 @@ export default function OtakuGoDashboard() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               <div className="ogd-subsection-title">
                 <Gamepad2 size={16} color="#F39C12" />
@@ -211,7 +212,7 @@ export default function OtakuGoDashboard() {
               </div>
 
               <div className="ogd-grid-row">
-                <div className="ogd-card ogd-card-medium ogd-animate-in">
+                <Link to="/room/$id" params={{ id: "games" }} className="ogd-card ogd-card-medium ogd-animate-in ogd-card-link">
                   <div>
                     <div className="ogd-card-icon">🎮</div>
                     <div className="ogd-card-title">الألعاب</div>
@@ -220,9 +221,9 @@ export default function OtakuGoDashboard() {
                   <div className="ogd-card-users">
                     <span style={{ color: "#F39C12", fontWeight: 700 }}>+234 لاعب</span>
                   </div>
-                </div>
+                </Link>
 
-                <div className="ogd-card ogd-card-medium music ogd-animate-in ogd-delay-1">
+                <Link to="/room/$id" params={{ id: "music" }} className="ogd-card ogd-card-medium music ogd-animate-in ogd-delay-1 ogd-card-link">
                   <div>
                     <div className="ogd-card-icon">🎵</div>
                     <div className="ogd-card-title">الموسيقى</div>
@@ -231,10 +232,10 @@ export default function OtakuGoDashboard() {
                   <div className="ogd-card-users">
                     <span style={{ color: "#E91E63", fontWeight: 700 }}>+156 مستمع</span>
                   </div>
-                </div>
+                </Link>
               </div>
 
-              <div className="ogd-card-image ogd-animate-in ogd-delay-2">
+              <Link to="/room/$id" params={{ id: "arts" }} className="ogd-card-image ogd-animate-in ogd-delay-2 ogd-card-link">
                 <div className="ogd-bg-image" />
                 <div className="ogd-bg-pattern" />
                 <div className="ogd-overlay">
@@ -251,7 +252,7 @@ export default function OtakuGoDashboard() {
                     <span style={{ background: "rgba(255,255,255,0.1)", padding: "4px 12px", borderRadius: 10, fontSize: "0.75rem" }}>🏆 تحدي</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         )}
