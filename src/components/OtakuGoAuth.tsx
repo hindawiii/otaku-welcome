@@ -96,15 +96,25 @@ export default function OtakuGoAuth() {
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
+    if (!loginEmail.trim() || !loginPassword.trim()) {
+      doShake();
+      alert("⚠️ يرجى إدخال البريد الإلكتروني وكلمة المرور!");
+      return;
+    }
     setLoginLoading(true);
     setTimeout(() => {
       setLoginLoading(false);
-      alert("🎌 مرحباً بك في ساحة الأوتاكو!");
-    }, 2000);
+      navigate({ to: "/dashboard" });
+    }, 1500);
   };
 
   const handleRegister = (e: FormEvent) => {
     e.preventDefault();
+    if (!regName.trim() || !regEmail.trim() || !regPassword.trim() || !regConfirm.trim()) {
+      doShake();
+      alert("⚠️ يرجى ملء جميع الحقول!");
+      return;
+    }
     if (regPassword !== regConfirm) {
       doShake();
       alert("⚠️ كلمتا المرور غير متطابقتين!");
@@ -113,8 +123,8 @@ export default function OtakuGoAuth() {
     setRegLoading(true);
     setTimeout(() => {
       setRegLoading(false);
-      alert("🎉 أهلاً بك في عائلة أوتاكو جو!");
-    }, 2000);
+      navigate({ to: "/dashboard" });
+    }, 1500);
   };
 
   const forgotPassword = () => {
