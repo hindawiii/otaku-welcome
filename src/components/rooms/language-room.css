@@ -1,0 +1,65 @@
+.lr-section { animation: ogd-fade 0.4s ease both; }
+.lr-title { margin: 0 0 14px; font-size: 1rem; font-weight: 800; }
+
+.lr-chars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  gap: 10px;
+}
+.lr-char-card {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid;
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lr-char-card:hover { transform: translateY(-3px); }
+.lr-char-glyph { font-size: 1.6rem; font-weight: 800; line-height: 1.1; }
+.lr-char-romaji { font-size: 0.72rem; color: #a0a0c0; margin-top: 4px; }
+
+.lr-sent-list { display: flex; flex-direction: column; gap: 10px; }
+.lr-sent-card {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.lr-sent-native { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
+.lr-sent-trans { font-size: 0.75rem; color: #c0c0d8; font-style: italic; margin-bottom: 4px; }
+.lr-sent-meaning { font-size: 0.82rem; color: #a0a0c0; }
+
+.lr-dialogue { display: flex; flex-direction: column; gap: 10px; }
+.lr-bubble {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 10px 14px;
+  max-width: 85%;
+}
+.lr-bubble-0 { align-self: flex-start; border-top-right-radius: 4px; }
+.lr-bubble-1 { align-self: flex-end; border-top-left-radius: 4px; }
+.lr-who { font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; }
+.lr-bubble-native { font-size: 0.95rem; font-weight: 700; }
+.lr-bubble-meaning { font-size: 0.75rem; color: #a0a0c0; margin-top: 2px; }
+
+.lr-level-list { display: flex; flex-direction: column; gap: 14px; }
+.lr-level-head {
+  display: flex; justify-content: space-between;
+  font-size: 0.82rem; font-weight: 700; color: #fff;
+  margin-bottom: 6px;
+}
+.lr-level-bar {
+  height: 8px; background: rgba(255,255,255,0.08);
+  border-radius: 8px; overflow: hidden;
+}
+.lr-level-fill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.6s ease;
+}
+
+@keyframes ogd-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
