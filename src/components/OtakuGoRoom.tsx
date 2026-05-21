@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import LanguageRoomContent from "./rooms/LanguageRoomContent";
+import WelcomeRoomContent from "./rooms/WelcomeRoomContent";
+import DrawingRoomContent from "./rooms/DrawingRoomContent";
 import "./otaku-go-dashboard.css";
 import "./otaku-go-room.css";
 import "./rooms/language-room.css";
+import "./rooms/special-rooms.css";
 
 
 export type RoomId =
