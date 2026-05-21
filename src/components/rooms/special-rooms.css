@@ -1,0 +1,120 @@
+/* Welcome room */
+.wr-guide { display: flex; flex-direction: column; gap: 12px; }
+.wr-guide-card {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 14px;
+}
+.wr-guide-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.wr-guide-card h4 { margin: 0 0 4px; font-size: 0.95rem; color: #fff; }
+.wr-guide-card p { margin: 0; font-size: 0.8rem; color: #a0a0c0; line-height: 1.6; }
+
+.wr-quiz { display: flex; flex-direction: column; gap: 14px; }
+.wr-quiz-card {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 14px;
+}
+.wr-quiz-q { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.wr-quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wr-quiz-opt {
+  padding: 10px; border: 1px solid; border-radius: 10px;
+  background: rgba(0,0,0,0.2); color: #fff; cursor: pointer;
+  font-size: 0.8rem; font-family: inherit; transition: all 0.2s;
+}
+.wr-quiz-opt:hover { background: rgba(255,255,255,0.05); }
+.wr-quiz-submit {
+  padding: 12px; border: none; border-radius: 12px;
+  color: #fff; font-weight: 800; cursor: pointer; font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.wr-rules { display: flex; flex-direction: column; gap: 10px; }
+.wr-rule {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 12px 14px;
+}
+.wr-rule-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; color: #fff; flex-shrink: 0;
+}
+.wr-rule h4 { margin: 0 0 4px; font-size: 0.9rem; color: #fff; }
+.wr-rule p { margin: 0; font-size: 0.78rem; color: #a0a0c0; line-height: 1.6; }
+
+.wr-intro { display: flex; flex-direction: column; gap: 12px; }
+.wr-intro-card {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 14px;
+}
+.wr-intro-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.wr-intro-head span { font-size: 1.4rem; }
+.wr-intro-head h4 { margin: 0; font-size: 0.95rem; color: #fff; }
+.wr-intro-card ul { margin: 0; padding-right: 18px; }
+.wr-intro-card li { font-size: 0.82rem; color: #c0c0d8; line-height: 1.9; }
+
+/* Drawing room */
+.dr-lessons { display: flex; flex-direction: column; gap: 10px; }
+.dr-lesson {
+  display: flex; gap: 12px; align-items: center;
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 12px;
+  transition: transform 0.2s ease;
+}
+.dr-lesson:hover { transform: translateX(-4px); }
+.dr-lesson-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.dr-lesson-body { flex: 1; }
+.dr-lesson-lvl { font-size: 0.7rem; font-weight: 800; margin-bottom: 2px; }
+.dr-lesson-title { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.dr-lesson-time { font-size: 0.72rem; color: #a0a0c0; }
+
+.dr-gallery {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.dr-art {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 8px;
+  transition: transform 0.2s;
+}
+.dr-art:hover { transform: translateY(-4px); }
+.dr-art-thumb {
+  height: 100px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; margin-bottom: 8px;
+}
+.dr-art-title { font-size: 0.82rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.dr-art-meta {
+  display: flex; justify-content: space-between;
+  font-size: 0.7rem; color: #a0a0c0;
+}
+
+.dr-challenges { display: flex; flex-direction: column; gap: 12px; }
+.dr-challenge {
+  background: rgba(22,33,62,0.7);
+  border: 1px solid; border-radius: 14px; padding: 14px;
+}
+.dr-challenge-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px; gap: 8px;
+}
+.dr-challenge-head h4 { margin: 0; font-size: 0.9rem; color: #fff; flex: 1; }
+.dr-challenge-days { padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; }
+.dr-challenge p { margin: 0 0 10px; font-size: 0.8rem; color: #a0a0c0; line-height: 1.5; }
+.dr-challenge-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.78rem; color: #a0a0c0;
+}
+.dr-challenge-foot button {
+  padding: 6px 16px; border: none; border-radius: 10px;
+  color: #fff; font-weight: 700; cursor: pointer; font-family: inherit;
+  font-size: 0.78rem;
+}
