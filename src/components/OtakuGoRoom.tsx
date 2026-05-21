@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import LanguageRoomContent from "./rooms/LanguageRoomContent";
+import WelcomeRoomContent from "./rooms/WelcomeRoomContent";
+import DrawingRoomContent from "./rooms/DrawingRoomContent";
 import "./otaku-go-dashboard.css";
 import "./otaku-go-room.css";
 import "./rooms/language-room.css";
+import "./rooms/special-rooms.css";
 
 
 export type RoomId =
@@ -196,23 +199,18 @@ export default function OtakuGoRoom({ roomId }: { roomId: RoomId }) {
 
         <div className="ogr-content ogd-animate-in ogd-delay-2">
           {(roomId === "jp" || roomId === "en" || roomId === "ar") ? (
-            <LanguageRoomContent
-              roomId={roomId}
-              tab={tab}
-              color={room.color}
-              colorAlt={room.colorAlt}
-            />
+            <LanguageRoomContent roomId={roomId} tab={tab} color={room.color} colorAlt={room.colorAlt} />
+          ) : roomId === "welcome" ? (
+            <WelcomeRoomContent tab={tab} color={room.color} colorAlt={room.colorAlt} />
+          ) : roomId === "drawing" ? (
+            <DrawingRoomContent tab={tab} color={room.color} colorAlt={room.colorAlt} />
           ) : (
             <div className="ogr-placeholder">
               <div className="ogr-placeholder-icon">{room.tabs[tab].icon}</div>
               <h3>ركن «{room.tabs[tab].label}»</h3>
-              <p>
-                المحتوى التفصيلي لهذا الركن قيد التجهيز وسيُضاف في المرحلة القادمة
-                من النقل (المرحلة 3 للاستقبال والرسم، المرحلة 4 للألعاب والموسيقى
-                والفنون).
-              </p>
+              <p>المحتوى التفصيلي لهذا الركن سيُضاف في المرحلة 4 (الألعاب، الموسيقى، الفنون).</p>
               <div className="ogr-placeholder-tag" style={{ background: `${room.color}26`, color: room.color }}>
-                المرحلة 1 · هيكل الغرفة جاهز
+                قيد التجهيز
               </div>
             </div>
           )}
