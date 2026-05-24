@@ -257,70 +257,8 @@ export default function OtakuGoDashboard() {
           </div>
         )}
 
-        {section === "anime" && (
-          <div>
-            <div className="ogd-section-header ogd-animate-in">
-              <h2><Tv size={22} className="ogd-icon-accent" /> الأنمي والمانجا</h2>
-            </div>
+        {section === "anime" && <AnimeMangaSection />}
 
-            <div className="ogd-anime-tabs ogd-animate-in ogd-delay-1">
-              {([
-                ["news", "📰 أخبار"],
-                ["calendar", "📅 تقويم"],
-                ["images", "🖼️ صور"],
-                ["ranking", "🏆 تصنيف"],
-              ] as [AnimeTab, string][]).map(([k, l]) => (
-                <div
-                  key={k}
-                  className={`ogd-anime-tab ${animeTab === k ? "active" : ""}`}
-                  onClick={() => setAnimeTab(k)}
-                >
-                  {l}
-                </div>
-              ))}
-            </div>
-
-            <div className="ogd-calendar-strip ogd-animate-in ogd-delay-2">
-              {days.map((d) => (
-                <div
-                  key={d.num}
-                  className={`ogd-calendar-day ${activeDay === d.num ? "active" : ""}`}
-                  onClick={() => setActiveDay(d.num)}
-                >
-                  <div className="ogd-day-name">{d.name}</div>
-                  <div className="ogd-day-num">{d.num}</div>
-                  {d.dot && <div className="ogd-day-dot" />}
-                </div>
-              ))}
-            </div>
-
-            {[
-              { id: "n1", bg: "linear-gradient(135deg, #e74c3c, #c0392b)", tag: "🔥 عاجل", tagStyle: {}, title: "إعلان موسم جديد من Attack on Titan!", date: "📅 يناير 2027", views: "👁️ 12.5K", likes: "2.3K", comments: "456" },
-              { id: "n2", bg: "linear-gradient(135deg, #f39c12, #e67e22)", tag: "📚 مانجا", tagStyle: { background: "#FFE66D", color: "#333" }, title: "One Piece - الفصل 1123: تحول مفاجئ!", date: "📅 نزل اليوم", views: "👁️ 8.2K", likes: "1.8K", comments: "234" },
-              { id: "n3", bg: "linear-gradient(135deg, #9b59b6, #8e44ad)", tag: "🎮 ألعاب", tagStyle: { background: "#4ECDC4" }, title: "Genshin Impact: إصدار شخصية أنمي جديدة", date: "📅 منذ ساعتين", views: "👁️ 5.1K", likes: "987", comments: "156" },
-            ].map((n, i) => (
-              <div key={n.id} className={`ogd-news-card ogd-animate-in ogd-delay-${i + 3}`}>
-                <div className="ogd-news-image" style={{ background: n.bg }}>
-                  <div className="ogd-news-tag" style={n.tagStyle}>{n.tag}</div>
-                </div>
-                <div className="ogd-news-content">
-                  <div className="ogd-news-title">{n.title}</div>
-                  <div className="ogd-news-meta">
-                    <span>{n.date}</span>
-                    <span>{n.views}</span>
-                  </div>
-                  <div className="ogd-news-actions">
-                    <button onClick={() => toggleLike(n.id)} className={liked[n.id] ? "liked" : ""}>
-                      <Heart size={16} fill={liked[n.id] ? "#FF6B6B" : "none"} /> {n.likes}
-                    </button>
-                    <button><MessageSquare size={16} /> {n.comments}</button>
-                    <button><Share2 size={16} /> مشاركة</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
 
         {section === "profile" && (
           <div>
