@@ -45,15 +45,7 @@ export default function OtakuGoDashboard() {
   const toggleLike = (id: string) =>
     setLiked((p) => ({ ...p, [id]: !p[id] }));
 
-  const days = [
-    { name: "سبت", num: 15 },
-    { name: "أحد", num: 16, dot: true },
-    { name: "اثنين", num: 17, dot: true },
-    { name: "ثلاث", num: 18, dot: true },
-    { name: "أربع", num: 19 },
-    { name: "خميس", num: 20, dot: true },
-    { name: "جمعة", num: 21 },
-  ];
+
 
   return (
     <div className="ogd-root" dir="rtl">
