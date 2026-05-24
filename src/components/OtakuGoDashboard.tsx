@@ -20,12 +20,9 @@ import AnimeMangaSection from "./anime/AnimeMangaSection";
 import "./otaku-go-dashboard.css";
 
 type Section = "messages" | "square" | "anime" | "profile";
-type AnimeTab = "news" | "calendar" | "images" | "ranking";
 
 export default function OtakuGoDashboard() {
   const [section, setSection] = useState<Section>("square");
-  const [animeTab, setAnimeTab] = useState<AnimeTab>("news");
-  const [activeDay, setActiveDay] = useState(17);
   const [liked, setLiked] = useState<Record<string, boolean>>({});
   const starsRef = useRef<HTMLDivElement>(null);
 
