@@ -16,6 +16,7 @@ import {
   LineChart,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import AnimeMangaSection from "./anime/AnimeMangaSection";
 import "./otaku-go-dashboard.css";
 
 type Section = "messages" | "square" | "anime" | "profile";
