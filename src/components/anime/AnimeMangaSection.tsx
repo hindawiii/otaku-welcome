@@ -4,6 +4,8 @@ import NewsTab from "./NewsTab";
 import WatchTab from "./WatchTab";
 import MangaTab from "./MangaTab";
 import MusicTab from "./MusicTab";
+import GalleryTab from "./GalleryTab";
+import TrackingTab from "./TrackingTab";
 import "./anime-section.css";
 
 const TABS = [
@@ -66,8 +68,8 @@ export default function AnimeMangaSection() {
         {tab === "watch" && <WatchTab />}
         {tab === "manga" && <MangaTab />}
         {tab === "music" && <MusicTab />}
-        {tab === "gallery" && <ComingSoon icon="🖼️" label="المعرض — المرحلة 3" />}
-        {tab === "tracking" && <ComingSoon icon="⭐" label="قوائم المتابعة — المرحلة 3" />}
+        {tab === "gallery" && <GalleryTab />}
+        {tab === "tracking" && <TrackingTab />}
       </div>
     </div>
   );
