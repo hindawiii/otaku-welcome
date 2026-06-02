@@ -85,6 +85,18 @@ export async function fetchSeasonalAnime(perPage = 12): Promise<AniMedia[]> {
   return data.Page.media;
 }
 
+export async function fetchTrendingManga(perPage = 12, genre?: string): Promise<AniMedia[]> {
+  const data = await query<{ Page: { media: AniMedia[] } }>(
+    `query ($perPage: Int, $genre: String) {
+      Page(page: 1, perPage: $perPage) {
+        media(type: MANGA, sort: TRENDING_DESC, genre: $genre) { ${MEDIA_FIELDS} }
+      }
+    }`,
+    { perPage, genre },
+  );
+  return data.Page.media;
+}
+
 export function formatCountdown(seconds: number): string {
   if (seconds <= 0) return "بثّت";
   const d = Math.floor(seconds / 86400);

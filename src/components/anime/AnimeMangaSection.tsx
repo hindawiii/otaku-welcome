@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LegalBadge, StatsGrid } from "./AnimeShared";
 import NewsTab from "./NewsTab";
 import WatchTab from "./WatchTab";
+import MangaTab from "./MangaTab";
+import MusicTab from "./MusicTab";
 import "./anime-section.css";
 
 const TABS = [
@@ -62,8 +64,8 @@ export default function AnimeMangaSection() {
       <div className="ams-body">
         {tab === "news" && <NewsTab />}
         {tab === "watch" && <WatchTab />}
-        {tab === "manga" && <ComingSoon icon="📚" label="المانجا — المرحلة 2" />}
-        {tab === "music" && <ComingSoon icon="🎵" label="الموسيقى — المرحلة 2" />}
+        {tab === "manga" && <MangaTab />}
+        {tab === "music" && <MusicTab />}
         {tab === "gallery" && <ComingSoon icon="🖼️" label="المعرض — المرحلة 3" />}
         {tab === "tracking" && <ComingSoon icon="⭐" label="قوائم المتابعة — المرحلة 3" />}
       </div>

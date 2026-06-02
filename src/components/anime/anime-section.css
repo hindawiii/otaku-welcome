@@ -438,3 +438,60 @@
   .ams-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .ams-title { font-size: 1.2rem; }
 }
+
+/* Music — track list */
+.ams-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ams-track {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--ams-surface);
+  border: 1px solid var(--ams-border);
+  border-radius: 12px;
+  padding: 0.55rem 0.7rem;
+  color: var(--ams-text);
+  font-family: inherit;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ams-track:hover { transform: translateY(-2px); border-color: var(--ams-cyan); }
+.ams-track.active {
+  border-color: var(--ams-accent);
+  background: rgba(233, 69, 96, 0.12);
+}
+.ams-track-num {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: var(--ams-muted);
+}
+.ams-track.active .ams-track-num {
+  background: var(--ams-accent);
+  color: #fff;
+}
+.ams-track-info { flex: 1; min-width: 0; }
+.ams-track-title { font-weight: 700; font-size: 0.9rem; }
+.ams-track-meta { font-size: 0.72rem; color: var(--ams-muted); }
+.ams-track-badge {
+  background: rgba(0, 217, 255, 0.15);
+  color: var(--ams-cyan);
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+/* Radio */
+.ams-radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
