@@ -495,3 +495,147 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 0.5rem;
 }
+
+/* Gallery */
+.ams-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+}
+.ams-gallery-item {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--ams-border);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ams-gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,0.7);
+}
+.ams-gallery-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.4rem 0.5rem;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Modal */
+.ams-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  backdrop-filter: blur(6px);
+}
+.ams-modal-card {
+  background: var(--ams-surface-hi);
+  border: 1px solid var(--ams-border);
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+}
+.ams-modal-close {
+  position: absolute;
+  top: 0.5rem; left: 0.5rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 2;
+}
+.ams-modal-img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+  display: block;
+}
+.ams-modal-body { padding: 1rem; }
+.ams-modal-body h3 { margin: 0 0 0.3rem; }
+.ams-modal-native { color: var(--ams-muted); font-size: 0.85rem; margin: 0 0 0.7rem; }
+.ams-modal-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* Tracking */
+.ams-add-btn {
+  background: rgba(0, 217, 255, 0.12);
+  color: var(--ams-cyan);
+  border: 1px dashed var(--ams-cyan);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+.ams-add-form {
+  background: var(--ams-surface);
+  border: 1px solid var(--ams-border);
+  border-radius: 14px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.ams-add-row { display: flex; gap: 0.5rem; }
+.ams-add-row .ams-search-input { flex: 1; }
+
+.ams-tracking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ams-tracking-item {
+  display: flex;
+  gap: 0.7rem;
+  background: var(--ams-surface);
+  border: 1px solid var(--ams-border);
+  border-radius: 12px;
+  padding: 0.6rem;
+}
+.ams-tracking-item img {
+  width: 60px; height: 84px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.ams-tracking-info { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.ams-tracking-title { font-weight: 800; font-size: 0.9rem; }
+.ams-tracking-meta { font-size: 0.75rem; color: var(--ams-muted); }
+.ams-tracking-actions { display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap; margin-top: 0.2rem; }
+.ams-tracking-actions button {
+  background: var(--ams-surface-hi);
+  color: var(--ams-text);
+  border: 1px solid var(--ams-border);
+  border-radius: 8px;
+  padding: 0.25rem 0.6rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ams-tracking-actions button:hover { border-color: var(--ams-cyan); }
+.ams-tracking-actions select {
+  background: var(--ams-surface-hi);
+  color: var(--ams-text);
+  border: 1px solid var(--ams-border);
+  border-radius: 8px;
+  padding: 0.25rem 0.4rem;
+  font-family: inherit;
+}
+.ams-tracking-del:hover { border-color: var(--ams-accent) !important; }
