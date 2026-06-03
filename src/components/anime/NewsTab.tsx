@@ -56,7 +56,7 @@ export default function NewsTab() {
   return (
     <div className="ams-tab-content">
       {/* Category filter */}
-      <div className="ams-cat-bar">
+      <div className="ams-cat-grid">
         {NEWS_CATEGORIES.map((c) => (
           <button
             key={c.id}
