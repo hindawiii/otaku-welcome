@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
+
 /* AnimeMangaSection — dark theme, RTL, glassmorphism */
 .ams-root {
   --ams-bg: #0a0a0f;
@@ -445,9 +447,6 @@
 .ams-coming-icon { font-size: 3rem; margin-bottom: 0.5rem; }
 .ams-coming h3 { margin: 0 0 0.3rem; }
 .ams-coming p { color: var(--ams-muted); margin: 0; }
-
-/* Cairo font import (safe even if already loaded) */
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
 
 /* Responsive */
 @media (max-width: 640px) {
