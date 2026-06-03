@@ -17,10 +17,9 @@ import {
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
-import GamesRoomContent from "./rooms/GamesRoomContent";
 import "./otaku-go-dashboard.css";
 
-type Section = "messages" | "square" | "anime" | "games" | "profile";
+type Section = "messages" | "square" | "anime" | "profile";
 
 export default function OtakuGoDashboard() {
   const [section, setSection] = useState<Section>("square");
@@ -202,20 +201,29 @@ export default function OtakuGoDashboard() {
                 أقسام الساحة
               </div>
 
-              <Link to="/room/$id" params={{ id: "games" }} className="ogd-card ogd-card-full ogd-animate-in ogd-card-link">
-                <div className="ogd-card-badge" style={{ color: "#F39C12" }}>🎮 جديد</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <div style={{ fontSize: "3rem" }}>🎮</div>
+              <div className="ogd-grid-row">
+                <Link to="/room/$id" params={{ id: "games" }} className="ogd-card ogd-card-medium ogd-animate-in ogd-card-link">
                   <div>
-                    <div className="ogd-card-title" style={{ fontSize: "1.2rem" }}>الألعاب</div>
-                    <div className="ogd-card-desc">أخبار + تصنيف + غرف لعب جماعية</div>
-                    <div className="ogd-card-users" style={{ marginTop: 8 }}>
-                      <span style={{ color: "#F39C12", fontWeight: 700 }}>+234 لاعب نشط</span>
-                    </div>
+                    <div className="ogd-card-icon">🎮</div>
+                    <div className="ogd-card-title">الألعاب</div>
+                    <div className="ogd-card-desc">أخبار + تصنيف + غرف لعب</div>
                   </div>
-                </div>
-              </Link>
+                  <div className="ogd-card-users">
+                    <span style={{ color: "#F39C12", fontWeight: 700 }}>+234 لاعب</span>
+                  </div>
+                </Link>
 
+                <Link to="/room/$id" params={{ id: "music" }} className="ogd-card ogd-card-medium music ogd-animate-in ogd-delay-1 ogd-card-link">
+                  <div>
+                    <div className="ogd-card-icon">🎵</div>
+                    <div className="ogd-card-title">الموسيقى</div>
+                    <div className="ogd-card-desc">Openings + OST + استماع جماعي</div>
+                  </div>
+                  <div className="ogd-card-users">
+                    <span style={{ color: "#E91E63", fontWeight: 700 }}>+156 مستمع</span>
+                  </div>
+                </Link>
+              </div>
 
               <Link to="/room/$id" params={{ id: "arts" }} className="ogd-card-image ogd-animate-in ogd-delay-2 ogd-card-link">
                 <div className="ogd-bg-image" />
@@ -240,15 +248,6 @@ export default function OtakuGoDashboard() {
         )}
 
         {section === "anime" && <AnimeMangaSection />}
-
-        {section === "games" && (
-          <div>
-            <div className="ogd-section-header ogd-animate-in">
-              <h2><Gamepad2 size={22} className="ogd-icon-accent" /> الألعاب</h2>
-            </div>
-            <GamesRoomContent tab={0} color="#F39C12" />
-          </div>
-        )}
 
 
         {section === "profile" && (
@@ -333,7 +332,6 @@ export default function OtakuGoDashboard() {
         {([
           ["messages", MessageCircle, "الرسائل"],
           ["square", Castle, "الساحة"],
-          ["games", Gamepad2, "الألعاب"],
           ["anime", Tv, "أنمي"],
           ["profile", User, "ملفي"],
         ] as [Section, typeof MessageCircle, string][]).map(([k, Icon, l]) => (

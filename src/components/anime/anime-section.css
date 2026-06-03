@@ -171,22 +171,6 @@
   background: rgba(0, 217, 255, 0.15);
   color: var(--ams-cyan);
   border-color: var(--ams-cyan);
-  box-shadow: 0 0 12px rgba(0, 217, 255, 0.35);
-}
-
-/* Grid variant — used in News filters */
-.ams-cat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-}
-.ams-cat-grid .ams-cat-pill {
-  justify-content: center;
-  text-align: center;
-  padding: 0.55rem 0.5rem;
-}
-@media (max-width: 480px) {
-  .ams-cat-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* External button */
@@ -445,6 +429,9 @@
 .ams-coming-icon { font-size: 3rem; margin-bottom: 0.5rem; }
 .ams-coming h3 { margin: 0 0 0.3rem; }
 .ams-coming p { color: var(--ams-muted); margin: 0; }
+
+/* Cairo font import (safe even if already loaded) */
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
 
 /* Responsive */
 @media (max-width: 640px) {
