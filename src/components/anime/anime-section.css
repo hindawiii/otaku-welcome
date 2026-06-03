@@ -171,6 +171,22 @@
   background: rgba(0, 217, 255, 0.15);
   color: var(--ams-cyan);
   border-color: var(--ams-cyan);
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.35);
+}
+
+/* Grid variant — used in News filters */
+.ams-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.ams-cat-grid .ams-cat-pill {
+  justify-content: center;
+  text-align: center;
+  padding: 0.55rem 0.5rem;
+}
+@media (max-width: 480px) {
+  .ams-cat-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* External button */
