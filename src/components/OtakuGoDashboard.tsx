@@ -333,6 +333,7 @@ export default function OtakuGoDashboard() {
         {([
           ["messages", MessageCircle, "الرسائل"],
           ["square", Castle, "الساحة"],
+          ["games", Gamepad2, "الألعاب"],
           ["anime", Tv, "أنمي"],
           ["profile", User, "ملفي"],
         ] as [Section, typeof MessageCircle, string][]).map(([k, Icon, l]) => (
