@@ -243,6 +243,7 @@ export default function OtakuGoDashboard() {
         {section === "profile" && (
           <div>
             <div className="ogd-profile-header ogd-animate-in">
+              <div className="ogd-profile-banner" aria-hidden="true" />
               <div className="ogd-avatar-large">أ</div>
               <div className="ogd-profile-name">أحمد الأوتاكو</div>
               <div className="ogd-profile-rank">
@@ -261,20 +262,23 @@ export default function OtakuGoDashboard() {
               <h3><Medal size={18} color="#FFE66D" /> الإنجازات</h3>
               <div className="ogd-badges-grid">
                 {[
-                  ["🥷", "خبير النينجا"],
-                  ["🗡️", "سياف"],
-                  ["🎌", "ياباني مبتدئ"],
-                  ["🎨", "رسام ماهر"],
-                  ["🎮", "لاعب محترف"],
-                  ["🎵", "عشق الموسيقى"],
-                ].map(([i, t]) => (
-                  <div key={t} className="ogd-badge-item">
-                    <span style={{ fontSize: "1.2rem" }}>{i}</span>
+                  ["🥷", "خبير النينجا", "legendary"],
+                  ["🗡️", "سياف", "rare"],
+                  ["🎌", "ياباني مبتدئ", "common"],
+                  ["🎨", "رسام ماهر", "rare"],
+                  ["🎮", "لاعب محترف", "rare"],
+                  ["🎵", "عشق الموسيقى", "common"],
+                  ["👑", "ملك الأوتاكو", "legendary"],
+                  ["📚", "قارئ نهم", "common"],
+                ].map(([i, t, r]) => (
+                  <div key={t} className={`ogd-badge-item ${r}`}>
+                    <span>{i}</span>
                     <span>{t}</span>
                   </div>
                 ))}
               </div>
             </div>
+
 
             <div className="ogd-lists-section ogd-animate-in ogd-delay-3">
               <h3><List size={18} color="#FF6B6B" /> قوائمي</h3>
