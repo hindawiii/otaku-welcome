@@ -157,19 +157,25 @@
   .ams-cat-bar { grid-template-columns: repeat(6, 1fr); }
 }
 .ams-cat-pill {
-  flex: 0 0 auto;
+  width: 100%;
   background: var(--ams-surface);
   color: var(--ams-muted);
   border: 1px solid var(--ams-border);
   border-radius: 999px;
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.5rem;
   font-family: inherit;
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: all 0.25s ease;
+}
+.ams-cat-pill:hover {
+  border-color: var(--ams-cyan);
+  color: var(--ams-cyan);
 }
 .ams-cat-pill.active {
   background: rgba(0, 217, 255, 0.15);
