@@ -147,25 +147,35 @@
 .ams-section-icon { font-size: 1.2rem; }
 .ams-section-sub { color: var(--ams-muted); font-size: 0.78rem; margin: 0.25rem 0 0; }
 
-/* Category pills */
+/* Category pills - grid layout */
 .ams-cat-bar {
-  display: flex; gap: 0.4rem; overflow-x: auto; scrollbar-width: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
-.ams-cat-bar::-webkit-scrollbar { display: none; }
+@media (min-width: 640px) {
+  .ams-cat-bar { grid-template-columns: repeat(6, 1fr); }
+}
 .ams-cat-pill {
-  flex: 0 0 auto;
+  width: 100%;
   background: var(--ams-surface);
   color: var(--ams-muted);
   border: 1px solid var(--ams-border);
   border-radius: 999px;
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.5rem;
   font-family: inherit;
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: all 0.25s ease;
+}
+.ams-cat-pill:hover {
+  border-color: var(--ams-cyan);
+  color: var(--ams-cyan);
 }
 .ams-cat-pill.active {
   background: rgba(0, 217, 255, 0.15);
