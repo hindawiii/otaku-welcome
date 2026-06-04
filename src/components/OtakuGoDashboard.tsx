@@ -334,6 +334,15 @@ export default function OtakuGoDashboard() {
             <span>{l}</span>
           </button>
         ))}
+        <Link
+          to="/room/$id"
+          params={{ id: "games" }}
+          className="ogd-nav-item"
+          aria-label="الألعاب"
+        >
+          <Gamepad2 size={22} />
+          <span>الألعاب</span>
+        </Link>
       </div>
     </div>
   );
