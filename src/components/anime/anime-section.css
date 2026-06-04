@@ -147,11 +147,15 @@
 .ams-section-icon { font-size: 1.2rem; }
 .ams-section-sub { color: var(--ams-muted); font-size: 0.78rem; margin: 0.25rem 0 0; }
 
-/* Category pills */
+/* Category pills - grid layout */
 .ams-cat-bar {
-  display: flex; gap: 0.4rem; overflow-x: auto; scrollbar-width: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
-.ams-cat-bar::-webkit-scrollbar { display: none; }
+@media (min-width: 640px) {
+  .ams-cat-bar { grid-template-columns: repeat(6, 1fr); }
+}
 .ams-cat-pill {
   flex: 0 0 auto;
   background: var(--ams-surface);
