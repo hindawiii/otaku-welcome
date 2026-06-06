@@ -19,7 +19,9 @@ import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
 import "./otaku-go-dashboard.css";
 
-type Section = "messages" | "square" | "anime" | "profile";
+type Section = "messages" | "square" | "games" | "anime" | "profile";
+
+import GamesRoomContent from "./rooms/GamesRoomContent";
 
 export default function OtakuGoDashboard() {
   const [section, setSection] = useState<Section>("square");
