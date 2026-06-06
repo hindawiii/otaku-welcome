@@ -66,7 +66,7 @@ export default function AnimeMangaSection() {
         {tab === "news" && <NewsTab />}
         {tab === "watch" && <WatchTab />}
         {tab === "manga" && <MangaTab />}
-        {tab === "music" && <MusicTab />}
+        
         {tab === "gallery" && <GalleryTab />}
         {tab === "tracking" && <TrackingTab />}
       </div>
