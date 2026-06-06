@@ -338,6 +338,7 @@ export default function OtakuGoDashboard() {
         {([
           ["messages", MessageCircle, "الرسائل"],
           ["square", Castle, "الساحة"],
+          ["games", Gamepad2, "الألعاب"],
           ["anime", Tv, "أنمي"],
           ["profile", User, "ملفي"],
         ] as [Section, typeof MessageCircle, string][]).map(([k, Icon, l]) => (
@@ -350,15 +351,6 @@ export default function OtakuGoDashboard() {
             <span>{l}</span>
           </button>
         ))}
-        <Link
-          to="/room/$id"
-          params={{ id: "games" }}
-          className="ogd-nav-item"
-          aria-label="الألعاب"
-        >
-          <Gamepad2 size={22} />
-          <span>الألعاب</span>
-        </Link>
       </div>
     </div>
   );
