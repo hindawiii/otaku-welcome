@@ -3,7 +3,7 @@ import { LegalBadge, StatsGrid } from "./AnimeShared";
 import NewsTab from "./NewsTab";
 import WatchTab from "./WatchTab";
 import MangaTab from "./MangaTab";
-import MusicTab from "./MusicTab";
+
 import GalleryTab from "./GalleryTab";
 import TrackingTab from "./TrackingTab";
 import "./anime-section.css";
@@ -12,7 +12,6 @@ const TABS = [
   { id: "news", label: "أخبار", icon: "📰" },
   { id: "watch", label: "مشاهدة", icon: "📺" },
   { id: "manga", label: "مانجا", icon: "📚" },
-  { id: "music", label: "موسيقى", icon: "🎵" },
   { id: "gallery", label: "معرض", icon: "🖼️" },
   { id: "tracking", label: "متابعة", icon: "⭐" },
 ] as const;
@@ -67,7 +66,7 @@ export default function AnimeMangaSection() {
         {tab === "news" && <NewsTab />}
         {tab === "watch" && <WatchTab />}
         {tab === "manga" && <MangaTab />}
-        {tab === "music" && <MusicTab />}
+        
         {tab === "gallery" && <GalleryTab />}
         {tab === "tracking" && <TrackingTab />}
       </div>

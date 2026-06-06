@@ -19,7 +19,9 @@ import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
 import "./otaku-go-dashboard.css";
 
-type Section = "messages" | "square" | "anime" | "profile";
+type Section = "messages" | "square" | "games" | "anime" | "profile";
+
+import GamesRoomContent from "./rooms/GamesRoomContent";
 
 export default function OtakuGoDashboard() {
   const [section, setSection] = useState<Section>("square");
@@ -201,19 +203,20 @@ export default function OtakuGoDashboard() {
                 أقسام الساحة
               </div>
 
-              <Link to="/room/$id" params={{ id: "games" }} className="ogd-card ogd-card-full ogd-animate-in ogd-card-link" style={{ background: "linear-gradient(145deg, rgba(243,156,18,0.18), rgba(243,156,18,0.05))", borderTop: "3px solid #F39C12" }}>
-                <div className="ogd-card-badge" style={{ color: "#F39C12" }}>🎮 رائج</div>
+              <Link to="/room/$id" params={{ id: "music" }} className="ogd-card ogd-card-full ogd-animate-in ogd-card-link" style={{ background: "linear-gradient(145deg, rgba(155,89,182,0.18), rgba(155,89,182,0.05))", borderTop: "3px solid #9B59B6" }}>
+                <div className="ogd-card-badge" style={{ color: "#9B59B6" }}>🎵 موسيقى</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <div style={{ fontSize: "3rem" }}>🎮</div>
+                  <div style={{ fontSize: "3rem" }}>🎵</div>
                   <div>
-                    <div className="ogd-card-title" style={{ fontSize: "1.2rem" }}>الألعاب</div>
-                    <div className="ogd-card-desc">أخبار · تصنيف · غرف لعب · بطولات</div>
+                    <div className="ogd-card-title" style={{ fontSize: "1.2rem" }}>الموسيقى</div>
+                    <div className="ogd-card-desc">Openings · Endings · OST · بث مباشر</div>
                     <div className="ogd-card-users" style={{ marginTop: 8 }}>
-                      <span style={{ color: "#F39C12", fontWeight: 700 }}>+234 لاعب نشط</span>
+                      <span style={{ color: "#9B59B6", fontWeight: 700 }}>+180 مستمع</span>
                     </div>
                   </div>
                 </div>
               </Link>
+
 
               <Link to="/room/$id" params={{ id: "arts" }} className="ogd-card-image ogd-animate-in ogd-delay-2 ogd-card-link">
                 <div className="ogd-bg-image" />
@@ -234,6 +237,15 @@ export default function OtakuGoDashboard() {
                 </div>
               </Link>
             </div>
+          </div>
+        )}
+
+        {section === "games" && (
+          <div>
+            <div className="ogd-section-header ogd-animate-in">
+              <h2><Gamepad2 size={22} className="ogd-icon-accent" /> الألعاب</h2>
+            </div>
+            <GamesRoomContent tab={0} color="#F39C12" />
           </div>
         )}
 
@@ -326,6 +338,7 @@ export default function OtakuGoDashboard() {
         {([
           ["messages", MessageCircle, "الرسائل"],
           ["square", Castle, "الساحة"],
+          ["games", Gamepad2, "الألعاب"],
           ["anime", Tv, "أنمي"],
           ["profile", User, "ملفي"],
         ] as [Section, typeof MessageCircle, string][]).map(([k, Icon, l]) => (
@@ -338,15 +351,6 @@ export default function OtakuGoDashboard() {
             <span>{l}</span>
           </button>
         ))}
-        <Link
-          to="/room/$id"
-          params={{ id: "games" }}
-          className="ogd-nav-item"
-          aria-label="الألعاب"
-        >
-          <Gamepad2 size={22} />
-          <span>الألعاب</span>
-        </Link>
       </div>
     </div>
   );
