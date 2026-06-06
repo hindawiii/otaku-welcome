@@ -440,8 +440,7 @@
 .ams-coming h3 { margin: 0 0 0.3rem; }
 .ams-coming p { color: var(--ams-muted); margin: 0; }
 
-/* Cairo font import (safe even if already loaded) */
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
+/* Cairo font: loaded via root route <link> tag, not @import */
 
 /* Responsive */
 @media (max-width: 640px) {
