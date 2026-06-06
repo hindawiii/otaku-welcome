@@ -240,6 +240,15 @@ export default function OtakuGoDashboard() {
           </div>
         )}
 
+        {section === "games" && (
+          <div>
+            <div className="ogd-section-header ogd-animate-in">
+              <h2><Gamepad2 size={22} className="ogd-icon-accent" /> الألعاب</h2>
+            </div>
+            <GamesRoomContent />
+          </div>
+        )}
+
         {section === "anime" && <AnimeMangaSection />}
 
 
