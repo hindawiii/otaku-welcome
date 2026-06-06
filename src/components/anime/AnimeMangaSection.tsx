@@ -3,7 +3,7 @@ import { LegalBadge, StatsGrid } from "./AnimeShared";
 import NewsTab from "./NewsTab";
 import WatchTab from "./WatchTab";
 import MangaTab from "./MangaTab";
-import MusicTab from "./MusicTab";
+
 import GalleryTab from "./GalleryTab";
 import TrackingTab from "./TrackingTab";
 import "./anime-section.css";
