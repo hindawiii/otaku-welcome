@@ -12,7 +12,6 @@ const TABS = [
   { id: "news", label: "أخبار", icon: "📰" },
   { id: "watch", label: "مشاهدة", icon: "📺" },
   { id: "manga", label: "مانجا", icon: "📚" },
-  { id: "music", label: "موسيقى", icon: "🎵" },
   { id: "gallery", label: "معرض", icon: "🖼️" },
   { id: "tracking", label: "متابعة", icon: "⭐" },
 ] as const;
