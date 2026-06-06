@@ -245,7 +245,7 @@ export default function OtakuGoDashboard() {
             <div className="ogd-section-header ogd-animate-in">
               <h2><Gamepad2 size={22} className="ogd-icon-accent" /> الألعاب</h2>
             </div>
-            <GamesRoomContent />
+            <GamesRoomContent tab={0} color="#F39C12" />
           </div>
         )}
 
