@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Bell,
   Search,
@@ -14,19 +14,58 @@ import {
   Medal,
   List,
   LineChart,
+  Settings,
+  UserCog,
+  Palette,
+  Shield,
+  BellRing,
+  Info,
+  LogOut,
+  Trash2,
+  Camera,
+  Globe,
+  Users,
+  EyeOff,
+  X,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
+import GamesRoomContent from "./rooms/GamesRoomContent";
 import "./otaku-go-dashboard.css";
 
 type Section = "messages" | "square" | "games" | "anime" | "profile";
+type Privacy = "public" | "friends" | "hidden";
 
-import GamesRoomContent from "./rooms/GamesRoomContent";
+const SECTION_KEY = "ogd:section";
+const AVATAR_KEY = "ogd:avatar";
+const PRIVACY_KEY = "ogd:privacy";
 
 export default function OtakuGoDashboard() {
-  const [section, setSection] = useState<Section>("square");
-  const [liked, setLiked] = useState<Record<string, boolean>>({});
+  const [section, setSectionState] = useState<Section>(() => {
+    if (typeof window === "undefined") return "square";
+    const saved = window.localStorage.getItem(SECTION_KEY) as Section | null;
+    return saved && ["messages", "square", "games", "anime", "profile"].includes(saved)
+      ? saved
+      : "square";
+  });
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [gpsOpen, setGpsOpen] = useState(false);
+  const [privacy, setPrivacy] = useState<Privacy>(() => {
+    if (typeof window === "undefined") return "public";
+    return (window.localStorage.getItem(PRIVACY_KEY) as Privacy) || "public";
+  });
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return window.localStorage.getItem(AVATAR_KEY);
+  });
+  const fileRef = useRef<HTMLInputElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
+
+  const setSection = useCallback((s: Section) => {
+    setSectionState(s);
+    try { window.localStorage.setItem(SECTION_KEY, s); } catch {}
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     const c = starsRef.current;
@@ -44,10 +83,39 @@ export default function OtakuGoDashboard() {
     }
   }, []);
 
-  const toggleLike = (id: string) =>
-    setLiked((p) => ({ ...p, [id]: !p[id] }));
+  const handleAvatarPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = String(reader.result || "");
+      setAvatarUrl(url);
+      try { window.localStorage.setItem(AVATAR_KEY, url); } catch {}
+    };
+    reader.readAsDataURL(f);
+  };
 
+  const choosePrivacy = (p: Privacy) => {
+    setPrivacy(p);
+    try { window.localStorage.setItem(PRIVACY_KEY, p); } catch {}
+    setGpsOpen(false);
+  };
 
+  const privacyLabel: Record<Privacy, { icon: string; text: string }> = {
+    public: { icon: "🌍", text: "عام" },
+    friends: { icon: "👥", text: "الأصدقاء فقط" },
+    hidden: { icon: "👁️", text: "مخفي" },
+  };
+
+  const SETTINGS_ITEMS: { icon: typeof UserCog; label: string; danger?: boolean; warn?: boolean }[] = [
+    { icon: UserCog, label: "تعديل الحساب" },
+    { icon: Palette, label: "تخصيص المظهر" },
+    { icon: Shield, label: "إعدادات الخصوصية" },
+    { icon: BellRing, label: "مركز الإشعارات" },
+    { icon: Info, label: "حول تطبيق أوتاكو جو" },
+    { icon: LogOut, label: "تسجيل الخروج", warn: true },
+    { icon: Trash2, label: "حذف الحساب نهائياً", danger: true },
+  ];
 
   return (
     <div className="ogd-root" dir="rtl">
@@ -58,14 +126,45 @@ export default function OtakuGoDashboard() {
         <div className="ogd-actions">
           <button aria-label="إشعارات"><Bell size={18} /></button>
           <button aria-label="بحث"><Search size={18} /></button>
+          <button aria-label="إعدادات" onClick={() => setSettingsOpen(v => !v)}>
+            <Settings size={18} />
+          </button>
           <div
             className="ogd-avatar-top"
             onClick={() => setSection("profile")}
+            style={avatarUrl ? { backgroundImage: `url(${avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center", color: "transparent" } : undefined}
           >
             أ
           </div>
         </div>
       </div>
+
+      {settingsOpen && (
+        <>
+          <div className="ogd-settings-backdrop" onClick={() => setSettingsOpen(false)} />
+          <div className="ogd-settings-menu" role="menu">
+            <div className="ogd-settings-head">
+              <span>⚙️ الإعدادات</span>
+              <button className="ogd-settings-close" onClick={() => setSettingsOpen(false)} aria-label="إغلاق">
+                <X size={16} />
+              </button>
+            </div>
+            <div className="ogd-settings-list">
+              {SETTINGS_ITEMS.map(({ icon: Icon, label, danger, warn }) => (
+                <button
+                  key={label}
+                  className={`ogd-settings-item ${danger ? "danger" : ""} ${warn ? "warn" : ""}`}
+                  onClick={() => setSettingsOpen(false)}
+                >
+                  <Icon size={16} />
+                  <span>{label}</span>
+                  <ChevronLeft size={14} className="ogd-settings-arrow" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       <div className="ogd-main">
         {section === "messages" && (
@@ -254,17 +353,92 @@ export default function OtakuGoDashboard() {
 
         {section === "profile" && (
           <div>
+            <div className="ogd-profile-title-row ogd-animate-in">
+              <div className="ogd-gps-wrap">
+                <button
+                  className="ogd-gps-btn"
+                  onClick={() => setGpsOpen(v => !v)}
+                  aria-label="حالة الخصوصية والموقع"
+                >
+                  <span className="ogd-gps-ping" />
+                  <span className="ogd-gps-dot" />
+                </button>
+                {gpsOpen && (
+                  <div className="ogd-gps-menu">
+                    <button onClick={() => choosePrivacy("public")} className={privacy === "public" ? "active" : ""}>
+                      <Globe size={14} className="ogd-gps-globe" />
+                      <span>🌍 عام (الجميع يرى)</span>
+                    </button>
+                    <button onClick={() => choosePrivacy("friends")} className={privacy === "friends" ? "active" : ""}>
+                      <Users size={14} />
+                      <span>👥 الأصدقاء فقط</span>
+                    </button>
+                    <button onClick={() => choosePrivacy("hidden")} className={privacy === "hidden" ? "active" : ""}>
+                      <EyeOff size={14} />
+                      <span>👁️ مخفي تماماً</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+              <h2 className="ogd-profile-page-title">الملف الشخصي</h2>
+            </div>
+
             <div className="ogd-profile-header ogd-animate-in">
               <div className="ogd-profile-banner" aria-hidden="true" />
-              <div className="ogd-avatar-large">أ</div>
+
+              <div className="ogd-avatar-upload" onClick={() => fileRef.current?.click()}>
+                <div
+                  className="ogd-avatar-large"
+                  style={avatarUrl ? { backgroundImage: `url(${avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center", color: "transparent" } : undefined}
+                >
+                  {!avatarUrl && "أ"}
+                </div>
+                <div className="ogd-avatar-overlay">
+                  <Camera size={20} />
+                  <span>تغيير الصورة</span>
+                </div>
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleAvatarPick}
+                />
+              </div>
+
               <div className="ogd-profile-name">أحمد الأوتاكو</div>
+              <div className="ogd-profile-handle">
+                <span>@ahmed_otaku</span>
+                <span className="ogd-flag">🇸🇩</span>
+                <span className="ogd-status-dot" /> <span className="ogd-status-text">نشط الآن</span>
+              </div>
               <div className="ogd-profile-rank">
                 <span>⭐⭐⭐</span>
                 <span>نجم ذهبي (المستوى 5)</span>
               </div>
             </div>
 
-            <div className="ogd-stats-row ogd-animate-in ogd-delay-1">
+            <div className="ogd-location-line ogd-animate-in ogd-delay-1">
+              📍 السودان, بورتسودان
+              <span className="ogd-location-privacy">· {privacyLabel[privacy].icon} {privacyLabel[privacy].text}</span>
+            </div>
+
+            <div className="ogd-social-bar ogd-animate-in ogd-delay-1">
+              {[
+                { icon: "🎙️", num: "124", label: "المنشورات" },
+                { icon: "👥", num: "312", label: "المتابَعين" },
+                { icon: "👥", num: "1.2K", label: "المتابِعون" },
+                { icon: "👁️", num: "8.4K", label: "الزوار" },
+              ].map((s) => (
+                <div key={s.label} className="ogd-social-col">
+                  <div className="ogd-social-icon">{s.icon}</div>
+                  <div className="ogd-social-num">{s.num}</div>
+                  <div className="ogd-social-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="ogd-stats-row ogd-animate-in ogd-delay-2">
               <div className="ogd-stat-item"><span className="ogd-stat-num">50</span><div className="ogd-stat-label">📺 أنمي</div></div>
               <div className="ogd-stat-item"><span className="ogd-stat-num">30</span><div className="ogd-stat-label">📚 مانجا</div></div>
               <div className="ogd-stat-item"><span className="ogd-stat-num">12</span><div className="ogd-stat-label">🏆 شارة</div></div>
