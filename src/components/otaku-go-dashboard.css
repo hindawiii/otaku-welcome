@@ -522,3 +522,204 @@
 
 .ogd-card-link { text-decoration: none; color: inherit; display: flex; }
 .ogd-card-link:hover { transform: translateY(-2px); }
+
+/* ======= Settings dropdown ======= */
+.ogd-settings-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(5,5,15,0.4);
+  backdrop-filter: blur(2px);
+  animation: ogd-fade-in 0.2s ease both;
+}
+@keyframes ogd-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.ogd-settings-menu {
+  position: fixed; top: 68px; left: 12px; z-index: 201;
+  width: min(300px, calc(100vw - 24px));
+  background: linear-gradient(165deg, rgba(26,26,62,0.96), rgba(15,15,35,0.96));
+  border: 1px solid rgba(255,230,109,0.20);
+  border-radius: 18px; padding: 8px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 28px rgba(255,107,107,0.10);
+  backdrop-filter: blur(24px) saturate(140%);
+  animation: ogd-menu-pop 0.25s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  transform-origin: top left;
+}
+@keyframes ogd-menu-pop {
+  from { opacity: 0; transform: translateY(-8px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.ogd-settings-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 12px 12px; font-weight: 800; font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 6px;
+}
+.ogd-settings-close {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; width: 28px; height: 28px; display: flex;
+  align-items: center; justify-content: center; color: #a0a0c0; cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ogd-settings-close:hover { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+.ogd-settings-list { display: flex; flex-direction: column; gap: 2px; }
+.ogd-settings-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 12px; border-radius: 12px;
+  background: transparent; border: 1px solid transparent;
+  color: #e8e8f0; font-family: 'Tajawal', sans-serif;
+  font-size: 0.88rem; font-weight: 600; text-align: right;
+  cursor: pointer; transition: all 0.2s ease;
+}
+.ogd-settings-item span { flex: 1; }
+.ogd-settings-item .ogd-settings-arrow { opacity: 0.5; }
+.ogd-settings-item:hover {
+  background: rgba(255,230,109,0.08);
+  border-color: rgba(255,230,109,0.18);
+  color: #FFE66D;
+}
+.ogd-settings-item.warn { color: #fca5a5; }
+.ogd-settings-item.warn:hover { background: rgba(248,113,113,0.10); border-color: rgba(248,113,113,0.25); color: #fca5a5; }
+.ogd-settings-item.danger { color: #ef4444; }
+.ogd-settings-item.danger:hover { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.30); }
+
+/* ======= Profile title + GPS pulse ======= */
+.ogd-profile-title-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  padding: 4px 2px;
+}
+.ogd-profile-page-title {
+  font-size: 1.2rem; font-weight: 800; margin: 0;
+  background: linear-gradient(135deg, #FFE66D, #FF6B6B);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ogd-gps-wrap { position: relative; }
+.ogd-gps-btn {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(34,197,94,0.10); border: 1px solid rgba(34,197,94,0.35);
+  cursor: pointer; padding: 0;
+}
+.ogd-gps-ping {
+  position: absolute; inset: -3px; border-radius: 50%;
+  background: rgba(34,197,94,0.45);
+  animation: ogd-ping 1.6s cubic-bezier(0,0,0.2,1) infinite;
+}
+@keyframes ogd-ping {
+  0% { transform: scale(0.7); opacity: 0.8; }
+  80%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.ogd-gps-dot {
+  position: relative; width: 10px; height: 10px; border-radius: 50%;
+  background: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,0.8);
+}
+.ogd-gps-menu {
+  position: absolute; top: 38px; right: 0; z-index: 50;
+  min-width: 220px;
+  background: linear-gradient(165deg, rgba(26,26,62,0.97), rgba(15,15,35,0.97));
+  border: 1px solid rgba(255,230,109,0.20);
+  border-radius: 14px; padding: 6px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px);
+  animation: ogd-menu-pop 0.22s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  transform-origin: top right;
+}
+.ogd-gps-menu button {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border-radius: 10px;
+  background: transparent; border: 1px solid transparent;
+  color: #e8e8f0; font-family: 'Tajawal', sans-serif;
+  font-size: 0.85rem; font-weight: 600; text-align: right; cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ogd-gps-menu button .ogd-gps-globe { color: #FFE66D; filter: drop-shadow(0 0 6px rgba(255,230,109,0.6)); }
+.ogd-gps-menu button:hover { background: rgba(255,230,109,0.08); border-color: rgba(255,230,109,0.18); }
+.ogd-gps-menu button.active { background: rgba(255,230,109,0.12); border-color: rgba(255,230,109,0.35); color: #FFE66D; }
+
+/* ======= Avatar upload ======= */
+.ogd-avatar-upload {
+  position: relative; width: 110px; height: 110px;
+  margin: 0 auto 14px; border-radius: 50%; cursor: pointer;
+}
+.ogd-avatar-upload .ogd-avatar-large { margin: 0; }
+.ogd-avatar-overlay {
+  position: absolute; inset: 0; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; color: #fff; font-size: 0.7rem; font-weight: 700;
+  background: rgba(0,0,0,0.55); opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.ogd-avatar-upload:hover .ogd-avatar-overlay { opacity: 1; }
+
+/* ======= Profile handle row ======= */
+.ogd-profile-handle {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 0.85rem; color: #c0c0d8; margin-bottom: 10px; font-weight: 600;
+}
+.ogd-profile-handle .ogd-flag { font-size: 1.1rem; }
+.ogd-status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.7);
+  display: inline-block;
+}
+.ogd-status-text { color: #4ade80; font-size: 0.78rem; }
+
+/* ======= Location line ======= */
+.ogd-location-line {
+  text-align: center; font-size: 0.9rem; color: #e8e8f0;
+  margin: -4px 0 16px; font-weight: 600; letter-spacing: 0.2px;
+}
+.ogd-location-privacy { color: #a0a0c0; font-size: 0.8rem; font-weight: 500; }
+
+/* ======= Social stats bar ======= */
+.ogd-social-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 14px 6px;
+  margin-bottom: 18px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 6px 20px rgba(0,0,0,0.25);
+}
+.ogd-social-col {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; padding: 2px 4px; text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+.ogd-social-col:last-child { border-left: none; }
+.ogd-social-icon { font-size: 1rem; opacity: 0.85; margin-bottom: 2px; }
+.ogd-social-num {
+  font-size: 1.15rem; font-weight: 900;
+  color: #fbbf24; /* amber-400 */
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 14px rgba(251,191,36,0.35);
+}
+.ogd-social-label {
+  font-size: 0.7rem; color: #cbd5e1; font-weight: 300;
+  margin-top: 1px;
+}
+
+/* ======= Compact Games grid (3 cols mobile, 4 desktop) ======= */
+.ogd-root .gr-hub {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+}
+@media (min-width: 640px) {
+  .ogd-root .gr-hub { grid-template-columns: repeat(4, 1fr) !important; }
+}
+.ogd-root .gr-card {
+  padding: 12px 8px !important;
+  border-radius: 14px !important;
+  aspect-ratio: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+}
+.ogd-root .gr-card .gr-icon {
+  font-size: 1.9rem !important; margin-bottom: 6px !important;
+}
+.ogd-root .gr-card h3 {
+  font-size: 0.78rem !important; line-height: 1.2 !important;
+  margin: 0 !important;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ogd-root .gr-card p { display: none !important; }
+.ogd-root .gr-card .gr-meta { display: none !important; }
