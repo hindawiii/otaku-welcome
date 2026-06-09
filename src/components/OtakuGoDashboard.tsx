@@ -31,7 +31,13 @@ import {
 import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
 import GamesRoomContent from "./rooms/GamesRoomContent";
+import MediaLightbox from "./MediaLightbox";
+import ReferralMatrix from "./ReferralMatrix";
 import "./otaku-go-dashboard.css";
+
+const COVER_KEY = "ogd:cover";
+const DEFAULT_COVER =
+  "https://images.unsplash.com/photo-1531256456869-ce942a665e80?auto=format&fit=crop&w=1600&q=80";
 
 type Section = "messages" | "square" | "games" | "anime" | "profile";
 type Privacy = "public" | "friends" | "hidden";
@@ -58,7 +64,13 @@ export default function OtakuGoDashboard() {
     if (typeof window === "undefined") return null;
     return window.localStorage.getItem(AVATAR_KEY);
   });
+  const [coverUrl, setCoverUrl] = useState<string>(() => {
+    if (typeof window === "undefined") return DEFAULT_COVER;
+    return window.localStorage.getItem(COVER_KEY) || DEFAULT_COVER;
+  });
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const coverRef = useRef<HTMLInputElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
 
   const setSection = useCallback((s: Section) => {
@@ -91,6 +103,18 @@ export default function OtakuGoDashboard() {
       const url = String(reader.result || "");
       setAvatarUrl(url);
       try { window.localStorage.setItem(AVATAR_KEY, url); } catch {}
+    };
+    reader.readAsDataURL(f);
+  };
+
+  const handleCoverPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = String(reader.result || "");
+      setCoverUrl(url);
+      try { window.localStorage.setItem(COVER_KEY, url); } catch {}
     };
     reader.readAsDataURL(f);
   };
