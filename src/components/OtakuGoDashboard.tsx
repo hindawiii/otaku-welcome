@@ -408,16 +408,42 @@ export default function OtakuGoDashboard() {
             </div>
 
             <div className="ogd-profile-header ogd-animate-in">
-              <div className="ogd-profile-banner" aria-hidden="true" />
+              <div
+                className="ogd-profile-banner"
+                style={{ backgroundImage: `url(${coverUrl})` }}
+                onClick={() => setLightbox(coverUrl)}
+                role="button"
+                aria-label="عرض صورة الغلاف"
+              >
+                <button
+                  className="ogd-cover-edit"
+                  onClick={(e) => { e.stopPropagation(); coverRef.current?.click(); }}
+                  aria-label="تغيير الغلاف"
+                >
+                  <Camera size={14} />
+                  <span>تغيير الغلاف</span>
+                </button>
+                <input
+                  ref={coverRef}
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleCoverPick}
+                />
+              </div>
 
-              <div className="ogd-avatar-upload" onClick={() => fileRef.current?.click()}>
+              <div className="ogd-avatar-upload">
                 <div
                   className="ogd-avatar-large"
                   style={avatarUrl ? { backgroundImage: `url(${avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center", color: "transparent" } : undefined}
+                  onClick={() => avatarUrl && setLightbox(avatarUrl)}
                 >
                   {!avatarUrl && "أ"}
                 </div>
-                <div className="ogd-avatar-overlay">
+                <div
+                  className="ogd-avatar-overlay"
+                  onClick={() => fileRef.current?.click()}
+                >
                   <Camera size={20} />
                   <span>تغيير الصورة</span>
                 </div>
@@ -429,6 +455,8 @@ export default function OtakuGoDashboard() {
                   onChange={handleAvatarPick}
                 />
               </div>
+
+
 
               <div className="ogd-profile-name">أحمد الأوتاكو</div>
               <div className="ogd-profile-handle">
