@@ -85,8 +85,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "OtakGo  كل ما يحتاجه الأوتاكو في منصة واحدة" },
       { name: "twitter:description", content: "اوتاكو ( OtakGo)
 هو التطبيق الشامل المصمم خصيصاً لمحبي الأنمي والمانجا في العالم العربي.. نجمع كل ما يحتاجه الأوتاكو في منصة واحدة سهلة الاستخدام، بدلاً من البح" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/q7dhKfWJDxMivRmzPpiYMWKuLaV2/social-images/social-1780990587822-splash-screen-1080x1920.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/q7dhKfWJDxMivRmzPpiYMWKuLaV2/social-images/social-1780990587822-splash-screen-1080x1920.webp" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/q7dhKfWJDxMivRmzPpiYMWKuLaV2/social-images/social-1780990894740-splash-screen-1080x1920.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/q7dhKfWJDxMivRmzPpiYMWKuLaV2/social-images/social-1780990894740-splash-screen-1080x1920.webp" },
     ],
     links: [
       {
