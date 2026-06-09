@@ -31,7 +31,13 @@ import {
 import { Link } from "@tanstack/react-router";
 import AnimeMangaSection from "./anime/AnimeMangaSection";
 import GamesRoomContent from "./rooms/GamesRoomContent";
+import MediaLightbox from "./MediaLightbox";
+import ReferralMatrix from "./ReferralMatrix";
 import "./otaku-go-dashboard.css";
+
+const COVER_KEY = "ogd:cover";
+const DEFAULT_COVER =
+  "https://images.unsplash.com/photo-1531256456869-ce942a665e80?auto=format&fit=crop&w=1600&q=80";
 
 type Section = "messages" | "square" | "games" | "anime" | "profile";
 type Privacy = "public" | "friends" | "hidden";
@@ -58,7 +64,13 @@ export default function OtakuGoDashboard() {
     if (typeof window === "undefined") return null;
     return window.localStorage.getItem(AVATAR_KEY);
   });
+  const [coverUrl, setCoverUrl] = useState<string>(() => {
+    if (typeof window === "undefined") return DEFAULT_COVER;
+    return window.localStorage.getItem(COVER_KEY) || DEFAULT_COVER;
+  });
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const coverRef = useRef<HTMLInputElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
 
   const setSection = useCallback((s: Section) => {
@@ -91,6 +103,18 @@ export default function OtakuGoDashboard() {
       const url = String(reader.result || "");
       setAvatarUrl(url);
       try { window.localStorage.setItem(AVATAR_KEY, url); } catch {}
+    };
+    reader.readAsDataURL(f);
+  };
+
+  const handleCoverPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = String(reader.result || "");
+      setCoverUrl(url);
+      try { window.localStorage.setItem(COVER_KEY, url); } catch {}
     };
     reader.readAsDataURL(f);
   };
@@ -384,16 +408,42 @@ export default function OtakuGoDashboard() {
             </div>
 
             <div className="ogd-profile-header ogd-animate-in">
-              <div className="ogd-profile-banner" aria-hidden="true" />
+              <div
+                className="ogd-profile-banner"
+                style={{ backgroundImage: `url(${coverUrl})` }}
+                onClick={() => setLightbox(coverUrl)}
+                role="button"
+                aria-label="عرض صورة الغلاف"
+              >
+                <button
+                  className="ogd-cover-edit"
+                  onClick={(e) => { e.stopPropagation(); coverRef.current?.click(); }}
+                  aria-label="تغيير الغلاف"
+                >
+                  <Camera size={14} />
+                  <span>تغيير الغلاف</span>
+                </button>
+                <input
+                  ref={coverRef}
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleCoverPick}
+                />
+              </div>
 
-              <div className="ogd-avatar-upload" onClick={() => fileRef.current?.click()}>
+              <div className="ogd-avatar-upload">
                 <div
                   className="ogd-avatar-large"
                   style={avatarUrl ? { backgroundImage: `url(${avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center", color: "transparent" } : undefined}
+                  onClick={() => avatarUrl && setLightbox(avatarUrl)}
                 >
                   {!avatarUrl && "أ"}
                 </div>
-                <div className="ogd-avatar-overlay">
+                <div
+                  className="ogd-avatar-overlay"
+                  onClick={() => fileRef.current?.click()}
+                >
                   <Camera size={20} />
                   <span>تغيير الصورة</span>
                 </div>
@@ -405,6 +455,8 @@ export default function OtakuGoDashboard() {
                   onChange={handleAvatarPick}
                 />
               </div>
+
+
 
               <div className="ogd-profile-name">أحمد الأوتاكو</div>
               <div className="ogd-profile-handle">
@@ -504,7 +556,10 @@ export default function OtakuGoDashboard() {
                 <div className="ogd-list-arrow"><ChevronLeft size={16} /></div>
               </div>
             </div>
+
+            <ReferralMatrix invited={4} />
           </div>
+
         )}
       </div>
 
@@ -526,6 +581,8 @@ export default function OtakuGoDashboard() {
           </button>
         ))}
       </div>
+
+      <MediaLightbox src={lightbox} onClose={() => setLightbox(null)} />
     </div>
   );
 }
