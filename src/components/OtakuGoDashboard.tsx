@@ -552,11 +552,14 @@ export default function OtakuGoDashboard() {
                 <div className="ogd-list-info">
                   <div className="ogd-list-title">آخر مانجا مقروءة</div>
                   <div className="ogd-list-count">One Piece - الفصل 1122</div>
+                </div>
+                <div className="ogd-list-arrow"><ChevronLeft size={16} /></div>
               </div>
             </div>
 
             <ReferralMatrix invited={4} />
           </div>
+
         )}
       </div>
 
